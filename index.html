@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giáng Sinh 2025 🎄</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Poppins,sans-serif;
+  background:radial-gradient(circle at top,#1f4037,#0b1d1a 60%);
+  color:#fff;
+  overflow:hidden;
+  height:100vh;
+}
+
+/* SNOW */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  pointer-events:none;
+}
+
+/* LOCK SCREEN */
+#lockScreen, #content{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#lockScreen{
+  flex-direction:column;
+  z-index:2;
+}
+
+/* BÀN PHÍM SỐ */
+.lock-box{
+  background:rgba(255,0,0,0.85);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 0 20px #0f0;
+  width:300px;
+}
+
+.lock-box img{
+  width:80px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.lock-box input{
+  width:180px;
+  padding:10px;
+  font-size:1.5rem;
+  text-align:center;
+  border-radius:10px;
+  border:none;
+  margin-bottom:15px;
+}
+
+.keypad{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+}
+
+.keypad button{
+  padding:15px 0;
+  font-size:1.5rem;
+  border-radius:10px;
+  border:none;
+  background:#fff;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+}
+.keypad button:hover{
+  background:#f1c40f;
+  color:#fff;
+}
+
+/* CONTENT SAU KHI MỞ KHÓA */
+#content{
+  display:none;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+#content img{
+  max-width:90%;
+  max-height:70vh;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+/* MODAL TRUNG TÂM */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+.modal-content{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(8px);
+  border:3px solid #fff;
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 0 25px #0f0;
+  max-width:400px;
+}
+.modal-content img{
+  width:200px;
+  border-radius:16px;
+  margin-bottom:20px;
+}
+.modal-content p{
+  color:#fff;
+  font-size:1.2rem;
+  font-weight:700;
+}
+
+.lock-box{
+  background:rgba(255,0,0,0.85);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 20px #0f0;
+  width:420px;
+  height:420px;        /* hình vuông */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.lock-layout{
+  display:flex;
+  width:100%;
+  height:100%;
+}
+
+.lock-left, .lock-right{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.lock-left img{
+  width:120px;
+  border-radius:12px;
+  margin-top:-10px;    /* đẩy ảnh lên một chút */
+}
+
+.lock-left .merry{
+  margin-top:8px;
+  font-size:1rem;
+  font-weight:700;
+  color:#fff;
+  text-shadow:0 0 5px #0f0;
+}
+
+.lock-right h2{
+  margin-bottom:10px;
+}
+
+.lock-right input{
+  width:140px;
+  padding:10px;
+  font-size:1.2rem;
+  text-align:center;
+  border-radius:10px;
+  border:none;
+  margin-bottom:15px;
+}
+
+.keypad{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+  width:100%;
+  max-width:220px;
+  margin:0 auto;
+}
+
+.keypad button{
+  aspect-ratio:1/1;
+  font-size:1.5rem;
+  border-radius:10px;
+  border:none;
+  background:#fff;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+  width:100%;
+}
+.keypad button:hover{
+  background:#f1c40f;
+  color:#fff;
+}
+
+
+
+
+/* BỨC THƯ */
+.letter-box{
+  border:3px dashed #fff;
+  border-radius:20px;
+  padding:20px;
+  margin:20px auto;
+  max-width:500px;
+  text-align:center;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 15px #0f0;
+}
+
+.letter-box h2{
+  margin-bottom:10px;
+  color:#f1c40f;
+  text-shadow:0 0 5px #0f0;
+}
+
+.letter-box p{
+  font-size:1.1rem;
+  line-height:1.5;
+}
+
+
+/* CAROUSEL */
+.carousel-container {
+  width: 100%;
+  overflow-x: scroll;              /* cho phép cuộn ngang */
+  -webkit-overflow-scrolling: touch; /* mượt trên mobile */
+  -ms-overflow-style: none;        /* IE, Edge */
+  scrollbar-width: none;           /* Firefox */
+}
+.carousel-container::-webkit-scrollbar {
+  display: none;                   /* Chrome, Safari */
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+
+.carousel img {
+  width: 250px;   /* tăng từ 120px lên 180px */
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #0f0;
+  transition: transform 0.3s;
+  flex: 0 0 auto;
+}
+
+.carousel img:hover {
+  transform: scale(1.1);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 3px solid #fff;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 25px #0f0;
+  max-width: 400px;
+}
+.modal-content p {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+
+
+
+@media(max-width:480px){
+  .lock-box{width:90%;}
+  .lock-box input{width:60%;}
+}
+</style>
+</head>
+<body>
+
+<!-- NHẠC LOCAL -->
+<audio id="music" src="./audio.mp3" loop></audio>
+
+<canvas id="snow"></canvas>
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <div class="lock-layout">
+      <!-- Bên trái: ảnh + chữ Merry Christmas -->
+      <div class="lock-left">
+        <img src="./image6.jpg" alt="Santa">
+        <p class="merry">Merry Christmas 🎄</p>
+      </div>
+      <!-- Bên phải: nhập mật khẩu + keypad -->
+      <div class="lock-right">
+        <h2>Mời em iu nhập mật khẩu nè</h2>
+        <input type="password" id="password" placeholder="****" readonly>
+        <div class="keypad">
+          <button>1</button><button>2</button><button>3</button>
+          <button>4</button><button>5</button><button>6</button>
+          <button>7</button><button>8</button><button>9</button>
+          <button>✕</button><button>0</button><button>✔</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- CONTENT SAU KHI MỞ -->
+<div id="content">
+  <!-- CAROUSEL ẢNH -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <img src="./image1.jpg" alt="Ảnh 1">
+      <img src="./image2.jpg" alt="Ảnh 2">
+      <img src="./image3.jpg" alt="Ảnh 3">
+      <img src="./image4.jpg" alt="Ảnh 4">
+      <img src="./image5.jpg" alt="Ảnh 5">
+      <img src="./image7.jpg" alt="Ảnh 6">
+      <img src="./image8.jpg" alt="Ảnh 7">
+      <img src="./image9.jpg" alt="Ảnh 8">
+      <img src="./image12.jpg" alt="Ảnh 9">
+      <img src="./image13.jpg" alt="Ảnh 10">
+      <img src="./image14.jpg" alt="Ảnh 11">
+      <img src="./image11.jpg" alt="Ảnh 12">
+    </div>
+  </div>
+
+
+<!-- BỨC THƯ TO -->
+<div id="bigLetter" class="letter-box" style="cursor:pointer;">
+  <h2>🎄 Chúc em iu có một mùa giáng sinh an lành 🎄</h2>
+  <p>Mời Việt Chinh click vào những tấm ảnh xinh xẻo của 2 chúng mình nè 🎅!</p>
+</div>
+<!-- MODAL HIỂN THỊ THƯ -->
+<div id="letterModal" class="modal">
+  <div class="modal-content">
+    <h2>🎄 From Hà Trọc India With Love 🎄</h2>
+    <p id="letterText"></p>
+  </div>
+</div>
+
+</div>
+
+<!-- MODAL SAI MẬT KHẨU -->
+<div id="errorModal" class="modal">
+  <div class="modal-content">
+    <img src="./image1.jpg" alt="Santa">
+    <p>Sai mật khẩu rồi! Thử lại nhé 🎅</p>
+  </div>
+</div>
+
+<script>
+/* SNOW EFFECT */
+const c=document.getElementById('snow');
+const ctx=c.getContext('2d');
+let w,h;
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();onresize=resize;
+
+const flakes=[...Array(120)].map(()=>({
+  x:Math.random()*w,
+  y:Math.random()*h,
+  r:Math.random()*3+1,
+  s:Math.random()*1+.5
+}));
+
+(function snow(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='rgba(255,255,255,.9)';
+  flakes.forEach(f=>{
+    ctx.beginPath();
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+    ctx.fill();
+    f.y+=f.s;
+    if(f.y>h){f.y=-5;f.x=Math.random()*w}
+  });
+  requestAnimationFrame(snow);
+})();
+
+/* MUSIC AUTO ON TOUCH */
+const music = document.getElementById('music');
+music.volume = 0.6;
+
+function enableSound(){
+  if(music.paused){
+    music.play();
+  }
+  document.removeEventListener('click', enableSound);
+  document.removeEventListener('touchstart', enableSound);
+}
+
+// Bật nhạc khi người dùng click hoặc chạm lần đầu
+document.addEventListener('click', enableSound);
+document.addEventListener('touchstart', enableSound);
+
+
+/* BÀN PHÍM SỐ */
+const passwordInput = document.getElementById('password');
+const buttons = document.querySelectorAll('.keypad button');
+const lockScreen = document.getElementById('lockScreen');
+const content = document.getElementById('content');
+const errorModal = document.getElementById('errorModal');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    const val = btn.textContent;
+if(val === '✔'){
+  if(passwordInput.value === '2010'){
+    lockScreen.style.display = 'none';
+    content.style.display = 'flex';   // chỉ cần bật #content
+  } else {
+    errorModal.style.display = 'flex';
+    passwordInput.value = '';
+    setTimeout(()=>{ errorModal.style.display = 'none'; }, 1500);
+  }
+    } else if(val === '✕'){
+      passwordInput.value = '';
+    } else {
+      if(passwordInput.value.length<4){
+        passwordInput.value += val;
+      }
+    }
+  });
+});
+const letterModal = document.getElementById('letterModal');
+const letterText = document.getElementById('letterText');
+const carouselImages = document.querySelectorAll('.carousel img');
+
+const letters = [
+  "Hà Trọc: Chúc em giáng sinh an lành ấm áp!",
+  "Saitama: Một mùa noel không có em ở bên , anh nhớ và yêu em nhiều. Anh luôn giữ tình yêu em trong trái tim và mong sớm trở về bên em.",
+  "Anh Hà India: Giáng sinh năm nay anh không mong gì cho mình, chỉ mong em bình yên và được yêu theo cách em xứng đáng. ",
+  "Hà Trọc: Hà Trọc muốn sớm về để ôm em Chinh vào lòng xoay nhiều vòng ....",
+  "Saitama: Chúc cho em người con gái anh yêu lúc nào cũng hạnh phúc, luôn nở nụ cười thật tươi.",
+  "Anh Hà India: Cảm ơn em đã cho anh cơ hội được bên em và chăm sóc em.",
+  "Hà Trọc: Mong cho tình cảm của chúng ta mãi bền lâu. Cùng bên nhau thật lâu em nhé.",
+  "Staima: Merry Christmas , người anh yêu. Mong rằng dù thời gian có trôi, chúng ta vẫn chọn bên nhau bằng tất cả sự chân thành như những ngày đầu.",
+  "Anh Hà India: Giữa bao điều đổi thay, điều anh trân trọng nhất vẫn là em -  người khiến anh luôn muốn quay về.",
+  "Saitama: Giữa thế giới rộng lớn, việc được yêu và yêu đúng người là điều may mắn nhất. Cảm ơn em đã đến bên cạnh anh.",
+  "Hà Trọc: Món quà nhỏ anh gửi em mong em vui. Hi vọng giáng sinh năm sau chúng ta có thể ở bên cạnh nhau. Mong chúng ta của sau này vẫn có nhau.",
+  "Anh Hà India: Merry Christmas, người anh thương. Chỉ cần có em bên cạnh , mọi mùa đông trong đời anh đều trở nên dịu dàng."
+];
+
+carouselImages.forEach((img, index) => {
+  img.addEventListener('click', (e) => {
+    e.stopPropagation();
+    letterText.textContent = letters[index]; // lấy nội dung từ mảng
+    letterModal.style.display = 'flex';
+  });
+});
+
+letterModal.addEventListener('click', (e) => {
+  if(e.target === letterModal){
+    letterModal.style.display = 'none';
+  }
+});
+
+
+</script>
+</body>
+</html>
