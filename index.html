@@ -30,13 +30,30 @@ html, body {
 }
 
 #lockScreen {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  position: fixed;       /* phủ toàn màn hình */
+  inset: 0;              /* shorthand cho top:0; right:0; bottom:0; left:0 */
   display: flex;
-  justify-content: center;   /* căn giữa ngang */
-  align-items: center;       /* căn giữa dọc */
+  justify-content: center; /* căn giữa ngang */
+  align-items: center;     /* căn giữa dọc */
   z-index: 2;
 }
+
+.lock-box {
+  background: rgba(255,0,0,0.85);
+  border: 3px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #0f0;
+  width: 320px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
 
 
 /* LOCK SCREEN */
@@ -52,21 +69,6 @@ html, body {
   z-index: 2;
 }
 
-.lock-box {
-  background: rgba(255,0,0,0.85);   /* nền đỏ */
-  border: 3px solid #fff;           /* viền trắng */
-  border-radius: 20px;
-  box-shadow: 0 0 20px #0f0;
-  width: 320px;                     /* gọn cho mobile */
-  height: 420px;                    /* cao hơn để chứa keypad */
-  display: flex;
-  flex-direction: column;           /* xếp dọc nội dung */
-  align-items: center;
-  justify-content: flex-start;      /* nội dung từ trên xuống */
-  padding: 20px;
-  box-sizing: border-box;
-  overflow: hidden;                 /* chặn tràn */
-}
 
 .lock-box img {
   width: 80px;
