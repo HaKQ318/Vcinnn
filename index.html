@@ -24,82 +24,76 @@ canvas{
 }
 
 /* LOCK SCREEN */
-#lockScreen, #content{
-  position:absolute;
-  top:0;left:0;width:100%;height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-#lockScreen {
-  position: fixed;        /* chiếm toàn màn hình */
+#lockScreen, #content {
+  position: fixed;              /* phủ toàn màn hình */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;          /* dùng flex để căn giữa */
-  justify-content: center;/* căn giữa ngang */
-  align-items: center;    /* căn giữa dọc */
+  display: flex;
+  justify-content: center;      /* căn giữa ngang */
+  align-items: center;          /* căn giữa dọc */
   z-index: 2;
 }
 
-
 .lock-box {
   background: rgba(255,0,0,0.85);   /* nền đỏ */
-  border: 3px solid #fff;           /* viền trắng rõ ràng */
+  border: 3px solid #fff;           /* viền trắng */
   border-radius: 20px;
   box-shadow: 0 0 20px #0f0;
-  width: 320px;                     /* gọn hơn cho mobile */
-  height: 320px;
+  width: 320px;                     /* gọn cho mobile */
+  height: 420px;                    /* cao hơn để chứa keypad */
   display: flex;
   flex-direction: column;           /* xếp dọc nội dung */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;      /* nội dung từ trên xuống */
   padding: 20px;
   box-sizing: border-box;
-  overflow: hidden;                 /* chặn nội dung tràn ra ngoài */
+  overflow: hidden;                 /* chặn tràn */
 }
 
-
-
-.lock-box img{
-  width:80px;
-  border-radius:10px;
-  margin-bottom:15px;
+.lock-box img {
+  width: 80px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-.lock-box input{
-  width:180px;
-  padding:10px;
-  font-size:1.5rem;
-  text-align:center;
-  border-radius:10px;
-  border:none;
-  margin-bottom:15px;
+.lock-box input {
+  width: 80%;                       /* co giãn theo ô đỏ */
+  max-width: 200px;
+  padding: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 15px;
 }
 
-.keypad{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:10px;
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột đều nhau */
+  gap: 10px;
+  width: 100%;                          /* chiếm ngang ô đỏ */
+  max-width: 240px;                     /* không vượt quá ô đỏ */
 }
 
-.keypad button{
-  padding:15px 0;
-  font-size:1.5rem;
-  border-radius:10px;
-  border:none;
-  background:#fff;
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.2s;
+.keypad button {
+  padding: 12px 0;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
 }
-.keypad button:hover{
-  background:#f1c40f;
-  color:#fff;
+
+.keypad button:hover {
+  background: #f1c40f;
+  color: #fff;
 }
+
 
 /* CONTENT SAU KHI MỞ KHÓA */
 #content{
