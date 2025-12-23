@@ -23,84 +23,86 @@ canvas{
   pointer-events:none;
 }
 
-/* LOCK SCREEN */
-#lockScreen, #content{
-  position:absolute;
-  top:0;left:0;width:100%;height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Toàn màn hình lockScreen */
 #lockScreen {
-  position: fixed;       /* chiếm toàn màn hình */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;         /* dùng flex để căn giữa */
-  justify-content: center;
-  align-items: center;
+  position: fixed;
+  inset: 0;                  /* top:0; right:0; bottom:0; left:0 */
+  display: flex;
+  justify-content: center;   /* căn giữa ngang */
+  align-items: center;       /* căn giữa dọc */
   z-index: 2;
 }
 
-/* Ô vuông đỏ */
+/* Khung đỏ */
 .lock-box {
   background: rgba(255,0,0,0.85);
-  border: 3px solid #fff;   /* viền trắng */
+  border: 3px solid #fff;       /* bo trắng */
   border-radius: 20px;
   box-shadow: 0 0 20px #0f0;
-  width: 320px;             /* gọn hơn cho mobile */
-  height: 320px;
+  width: 90vw;                  /* chiếm 90% chiều ngang màn hình */
+  max-width: 500px;             /* không vượt quá 500px */
+  height: 90vh;                 /* chiếm 90% chiều cao màn hình */
+  max-height: 700px;            /* không vượt quá 700px */
   display: flex;
-  flex-direction: column;   /* xếp dọc nội dung */
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 20px;
   box-sizing: border-box;
-  overflow: hidden;         /* chặn nội dung tràn */
+  overflow: auto;               /* cho phép cuộn nếu nội dung nhiều */
 }
 
-
-
-.lock-box img{
-  width:80px;
-  border-radius:10px;
-  margin-bottom:15px;
+/* Ảnh, input, keypad đều co giãn trong khung */
+.lock-box img {
+  width: 25%;
+  max-width: 100px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-.lock-box input{
-  width:180px;
-  padding:10px;
-  font-size:1.5rem;
-  text-align:center;
-  border-radius:10px;
-  border:none;
-  margin-bottom:15px;
+.lock-box input {
+  width: 80%;
+  max-width: 250px;
+  padding: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 15px;
 }
 
-.keypad{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:10px;
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
 }
 
-.keypad button{
-  padding:15px 0;
-  font-size:1.5rem;
-  border-radius:10px;
-  border:none;
-  background:#fff;
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-  transition:0.2s;
+.keypad button {
+  padding: 12px 0;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
 }
-.keypad button:hover{
-  background:#f1c40f;
-  color:#fff;
+
+.keypad button:hover {
+  background: #f1c40f;
+  color: #fff;
 }
+
 
 /* CONTENT SAU KHI MỞ KHÓA */
 #content{
