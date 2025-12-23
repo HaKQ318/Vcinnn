@@ -38,14 +38,22 @@ canvas{
 }
 
 /* BÀN PHÍM SỐ */
-.lock-box{
-  background:rgba(255,0,0,0.85);
-  padding:30px;
-  border-radius:20px;
-  text-align:center;
-  box-shadow:0 0 20px #0f0;
-  width:300px;
+.lock-box {
+  background: rgba(255,0,0,0.85);   /* nền đỏ */
+  border: 3px solid #fff;           /* viền trắng rõ ràng */
+  border-radius: 20px;
+  box-shadow: 0 0 20px #0f0;
+  width: 420px;
+  height: 420px;                    /* ô vuông cố định */
+  display: flex;
+  flex-direction: column;           /* xếp dọc nội dung */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;           /* padding không phá kích thước */
+  overflow: hidden;                 /* chặn nội dung tràn ra ngoài */
 }
+
 
 .lock-box img{
   width:80px;
