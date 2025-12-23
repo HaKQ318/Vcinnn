@@ -29,55 +29,43 @@ html, body {
   height: 100%;
 }
 
+/* LOCK SCREEN phủ toàn màn hình */
 #lockScreen {
-  position: fixed;       /* phủ toàn màn hình */
-  inset: 0;              /* shorthand cho top:0; right:0; bottom:0; left:0 */
+  position: fixed;
+  inset: 0;                  /* top:0; right:0; bottom:0; left:0 */
   display: flex;
-  justify-content: center; /* căn giữa ngang */
-  align-items: center;     /* căn giữa dọc */
+  justify-content: center;   /* căn giữa ngang */
+  align-items: center;       /* căn giữa dọc */
   z-index: 2;
 }
 
+/* Ô đỏ */
 .lock-box {
-  background: rgba(255,0,0,0.85);
-  border: 3px solid #fff;
+  background: rgba(255,0,0,0.85);   /* nền đỏ */
+  border: 3px solid #fff;           /* bo trắng */
   border-radius: 20px;
   box-shadow: 0 0 20px #0f0;
   width: 320px;
   height: 420px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;           /* xếp dọc nội dung */
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: hidden;                 /* chặn tràn */
 }
 
-
-
-/* LOCK SCREEN */
-#lockScreen, #content {
-  position: fixed;              /* phủ toàn màn hình */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;      /* căn giữa ngang */
-  align-items: center;          /* căn giữa dọc */
-  z-index: 2;
-}
-
-
+/* Ảnh */
 .lock-box img {
   width: 80px;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
+/* Ô nhập mật khẩu */
 .lock-box input {
-  width: 80%;                       /* co giãn theo ô đỏ */
+  width: 80%;
   max-width: 200px;
   padding: 10px;
   font-size: 1.2rem;
@@ -87,12 +75,13 @@ html, body {
   margin-bottom: 15px;
 }
 
+/* Keypad số */
 .keypad {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cột đều nhau */
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  width: 100%;                          /* chiếm ngang ô đỏ */
-  max-width: 240px;                     /* không vượt quá ô đỏ */
+  width: 100%;
+  max-width: 240px;
 }
 
 .keypad button {
@@ -111,6 +100,7 @@ html, body {
   background: #f1c40f;
   color: #fff;
 }
+
 
 
 /* CONTENT SAU KHI MỞ KHÓA */
