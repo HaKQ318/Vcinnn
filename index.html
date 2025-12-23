@@ -22,55 +22,83 @@ canvas{
   z-index:999;
   pointer-events:none;
 }
-html, body { margin: 0; padding: 0; width: 100%; height: 100%; } /* Lock screen phủ toàn màn hình */ #lockScreen { position: fixed; inset: 0; /* top:0; right:0; bottom:0; left:0 */ display: flex; justify-content: center; /* căn giữa ngang */ align-items: center; /* căn giữa dọc */ z-index: 2; } /* Ô đỏ */ .lock-box { background: rgba(255,0,0,0.85); border: 3px solid #fff; /* bo trắng */ border-radius: 20px; box-shadow: 0 0 20px #0f0; width: 85vw; /* chiếm 85% chiều ngang màn hình */ max-width: 500px; /* không vượt quá 500px */ height: 80vh; /* chiếm 80% chiều cao màn hình */ max-height: 600px; /* không vượt quá 600px */ display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 20px; box-sizing: border-box; overflow: hidden; }
 
-
-/* Ảnh */
-.lock-box img {
-  width: 80px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+/* LOCK SCREEN */
+#lockScreen, #content{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* Ô nhập mật khẩu */
-.lock-box input {
-  width: 80%;
-  max-width: 200px;
-  padding: 10px;
-  font-size: 1.2rem;
-  text-align: center;
-  border-radius: 10px;
-  border: none;
-  margin-bottom: 15px;
-}
-
-/* Keypad số */
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+#lockScreen {
+  position: fixed;        /* chiếm toàn màn hình */
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 240px;
-}
-
-.keypad button {
-  padding: 12px 0;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  border: none;
-  background: #fff;
-  color: #000;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.keypad button:hover {
-  background: #f1c40f;
-  color: #fff;
+  height: 100%;
+  display: flex;          /* dùng flex để căn giữa */
+  justify-content: center;/* căn giữa ngang */
+  align-items: center;    /* căn giữa dọc */
+  z-index: 2;
 }
 
 
+/* BÀN PHÍM SỐ */
+.lock-box {
+  background: rgba(255,0,0,0.85);   /* nền đỏ */
+  border-radius: 20px;
+  box-shadow: 0 0 20px #0f0;
+  width: 420px;
+  height: 420px;                    /* ô vuông cố định */
+  display: flex;
+  flex-direction: column;           /* xếp dọc nội dung */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;           /* padding không phá kích thước */
+  overflow: hidden;                 /* chặn nội dung tràn ra ngoài */
+}
+
+
+.lock-box img{
+  width:80px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.lock-box input{
+  width:180px;
+  padding:10px;
+  font-size:1.5rem;
+  text-align:center;
+  border-radius:10px;
+  border:none;
+  margin-bottom:15px;
+}
+
+.keypad{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+}
+
+.keypad button{
+  padding:15px 0;
+  font-size:1.5rem;
+  border-radius:10px;
+  border:none;
+  background:#fff;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+}
+.keypad button:hover{
+  background:#f1c40f;
+  color:#fff;
+}
 
 /* CONTENT SAU KHI MỞ KHÓA */
 #content{
@@ -283,15 +311,10 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; } /* Lock screen 
   font-weight: 700;
 }
 
-
-
-
 @media(max-width:480px){
   .lock-box{width:90%;}
   .lock-box input{width:60%;}
 }
-/* Media query cho iPhone ngang */ @media screen and (orientation: landscape) { .lock-box { width: 90vw; /* rộng hơn khi xoay ngang */ height: 70vh; /* thấp hơn để vừa khung ngang */ } } /* Media query cho iPhone dọc */ @media screen and (orientation: portrait) { .lock-box { width: 85vw; height: 80vh; } }
-
 </style>
 </head>
 <body>
@@ -447,7 +470,6 @@ if(val === '✔'){
 const letterModal = document.getElementById('letterModal');
 const letterText = document.getElementById('letterText');
 const carouselImages = document.querySelectorAll('.carousel img');
-
 const letters = [
   "Hà Trọc: Chúc em giáng sinh an lành ấm áp!",
   "Saitama: Một mùa noel không có em ở bên , anh nhớ và yêu em nhiều. Anh luôn giữ tình yêu em trong trái tim và mong sớm trở về bên em.",
@@ -462,7 +484,6 @@ const letters = [
   "Hà Trọc: Món quà nhỏ anh gửi em mong em vui. Hi vọng giáng sinh năm sau chúng ta có thể ở bên cạnh nhau. Mong chúng ta của sau này vẫn có nhau.",
   "Anh Hà India: Merry Christmas, người anh thương. Chỉ cần có em bên cạnh , mọi mùa đông trong đời anh đều trở nên dịu dàng."
 ];
-
 carouselImages.forEach((img, index) => {
   img.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -476,8 +497,6 @@ letterModal.addEventListener('click', (e) => {
     letterModal.style.display = 'none';
   }
 });
-
-
 </script>
 </body>
 </html>
